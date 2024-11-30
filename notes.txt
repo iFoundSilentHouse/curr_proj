@@ -1,0 +1,7 @@
+Use fwrite and fread functions to save information [provide json save files output option on some newer iteration]
+Create an editor of:
+    1. Name of project
+    2. Technologies used there
+    3. Project description and/or notes
+    3. command line options to open programming tools and/or Xorg options
+    4. Add colors!
