@@ -1,6 +1,8 @@
-#include <curses.h>
 #include <ncurses.h>
 #include "colors.h"
+#include "io.h"
+#include "output.h"
+
 
 int main(int argc,char *argv[]) {
     initscr();
@@ -9,9 +11,6 @@ int main(int argc,char *argv[]) {
     noecho();
     curs_set(0);
 
-    int rows_n, cols_n;
-    getmaxyx(stdscr, rows_n, cols_n);
-    
     bool colorful_term = has_colors();
     if(colorful_term == TRUE){
         start_color();
@@ -19,9 +18,11 @@ int main(int argc,char *argv[]) {
         init_colors();
     }
 
-    int8_t chosen_color = add_color_win();
-    //getch(); // suspend waiting for keypress
+    char *savefile_path;
+    savefile_path = get_savfile_path(argc, argv);
+
+    show_projs(savefile_path);
+
     endwin();
-    printf("%d\n", chosen_color);
     return 0;
 }

@@ -1,18 +1,15 @@
 // color menu module
 #include "colors.h"
 #include "layout_handlers.h"
-#include <stdint.h>
-#include <curses.h>
-#include <ncurses.h>
 WINDOW *colwin;
 
 void init_colors()
 {
     // color menu module
-    for (int8_t i = 1; i < COLORS+1; i++) {
+    for (int i = 1; i < COLORS+1; i++) {
         init_pair(i, COLOR_BLACK, i);
     }
-    init_pair(BASE, COLOR_WHITE, COLOR_BLACK);
+    init_pair(BASE_COLOR, COLOR_WHITE, COLOR_BLACK);
 }
 
 void redraw_color_menu(int8_t chosen_option) 
@@ -31,8 +28,8 @@ void redraw_color_menu(int8_t chosen_option)
 
 int8_t add_color_win() {
     colwin = create_newwin(3, COLORS*5+4, 3, 5);
-    wbkgd(colwin, COLOR_PAIR(BASE));
-    int8_t chosen = 0;
+    wbkgd(colwin, COLOR_PAIR(BASE_COLOR));
+    int chosen = 0;
     keypad(stdscr, TRUE); // menu input mode
     int key = 0;
     redraw_color_menu(chosen);

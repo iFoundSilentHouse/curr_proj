@@ -4,7 +4,7 @@
 #include <ncurses.h>
 
 #define COLORS 8
-#define BASE COLORS+1
+#define BASE_COLOR COLORS+1
 void init_colors();
 int8_t add_color_win();
 

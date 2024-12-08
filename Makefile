@@ -19,4 +19,4 @@ debug: clean
 	gdb $(TARGET)
 
 clean: 
-	rm $(TARGET)
+	rm -f $(TARGET)

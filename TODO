@@ -1,4 +1,10 @@
-refactor color menu
-make struct for 
+make struct for project (use notes.txt)
+    write ncurses representation for file r ~/.curr_proj
+        *try to not load all projects in RAM but only work with representation and id of proj:
+    exception handling with savefile
+    write ncurses write function for file ~/.curr_proj
+        use fseek to skip until id of proj;
+function to get savefile path from terminal arguments/set default ~/.curr_proj
+rework savfile after project.color change
 add panels for change menus
 make it available to open custom-path config files
