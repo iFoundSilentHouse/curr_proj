@@ -1,6 +1,8 @@
 #ifndef IO_H
 #define IO_H
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* projects struct rule
    It's serialized so project should be reworked if this struct'd been changed */
@@ -15,7 +17,6 @@ typedef struct{
     uint8_t color;
 } project;
 
-/* Default savfile path & code to access custom way through terminal arguments*/
 extern char *savfile_path;
 char *get_savfile_path(int argc,char *argv[]);
 

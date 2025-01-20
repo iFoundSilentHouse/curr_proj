@@ -3,8 +3,16 @@ make struct for project (use notes.txt)
         *try to not load all projects in RAM but only work with representation and id of proj:
     exception handling with savefile
     write ncurses write function for file ~/.curr_proj
-        use fseek to skip until id of proj;
+        *use fseek to skip until id of proj;
+        add.c 
+        delete.c -- create ability to delete not only the last one
+        desc.c 
+        launch.c
+        edit.c
+        rework color menu with extended ANSII bricks (use u+... in printf)
 function to get savefile path from terminal arguments/set default ~/.curr_proj
 rework savfile after project.color change
 add panels for change menus
 make it available to open custom-path config files
+windows port (at least delete.truncate usese unistd.h)
+localization (don't forget -lformw). Use wide characters for localization

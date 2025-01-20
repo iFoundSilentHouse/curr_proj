@@ -1,7 +1,7 @@
 #include "io.h"
-#include <stdlib.h>
-#include <string.h>
 
+
+/* Default savfile path & code to access custom way through terminal arguments*/
 char *get_savfile_path(int argc,char *argv[]) {
     // TODO: manupulate argc&argv
 

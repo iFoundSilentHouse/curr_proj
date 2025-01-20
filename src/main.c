@@ -1,8 +1,6 @@
-#include <ncurses.h>
 #include "colors.h"
 #include "io.h"
 #include "output.h"
-
 
 int main(int argc,char *argv[]) {
     initscr();
@@ -20,7 +18,7 @@ int main(int argc,char *argv[]) {
 
     char *savefile_path;
     savefile_path = get_savfile_path(argc, argv);
-
+    
     show_projs(savefile_path);
 
     endwin();

@@ -5,3 +5,6 @@ Create an editor of:
     3. Project description and/or notes
     4. command line options to open programming tools and/or Xorg options
     5. Add colors!
+
+gdb tty debugging option fails. Over9000 ncurses representation bugs
+gdbserver works fine https://fayejett.co.uk/debug-ncurses-with-gdb-gdbserver-and-full-input-output/

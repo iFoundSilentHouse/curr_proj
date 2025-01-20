@@ -1,10 +1,8 @@
 #include "output.h"
+#include "color_macros.h" // for BASE_COLOR macro
 #include "colors.h"
-#include "layout_handlers.h"
-#include <ncurses.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
+#include "delete.h"
+#include "launch.h"
 
 // attempting to not load projects in memory but access them with fread every representation/change
 
@@ -19,9 +17,11 @@ uint8_t get_proj_n (FILE *savfile) {
 }
 
 void redraw_projs(FILE *savfile, uint8_t chosen) {
+    clear();
+    refresh();
     project prj;
     uint8_t proj_iter = 0;
-    // exception handling - if data is corrupted or savefile is empty. If everything is fine just go on
+    // TODO: exception handling - if data is corrupted or savefile is empty. If everything is fine just go on
     while (fread(&prj, sizeof(project), 1, savfile)) {
         //
         if (!prj.color)
@@ -42,7 +42,7 @@ void redraw_projs(FILE *savfile, uint8_t chosen) {
         //
         proj_iter++;
     }
-    mvaddstr(1, 2, "Add new project: a; See description: d; See tech: t; Launch chosen: l; Change color: c");
+    mvaddstr(1, 2, "Add: a; Launch: Enter; Edit chosen: e; Delete: r; See description and tech: d; Quit: q");
     rewind(savfile);
 }
 
@@ -57,15 +57,15 @@ void show_projs(char *savfile_path) {
     uint8_t proj_n = get_proj_n(savfile);
     if (savfile == NULL) {
         endwin();
-        printf("Error opening file %s\n", savfile_path);
+        fprintf(stderr, "Error opening file %s\n", savfile_path);
         exit(1);
     }
     
-    keypad(stdscr, TRUE);
+    keypad(stdscr, true);
     int chosen = 0;
     redraw_projs(savfile, chosen);
     int key = 0;
-    while(key != 10 && key != 'q') { // 10 is ENTER key; 113 is 'q'
+    while(key != '\n' && key != 'q') { // 10 is ENTER key; 113 is 'q'
         key = getch();
         switch(key) {
             case KEY_DOWN:
@@ -82,19 +82,23 @@ void show_projs(char *savfile_path) {
                 break;
             case 'A':
             case 'a':
-            
+                addproj(savfile_path);
+                proj_n++;
+                break;
+            case 'E':
+            case 'e':
+
                 break;
             case 'D':
             case 'd':
             
                 break;
-            case 'T':
-            case 't':
-            
-                break;
-            case 'C':
-            case 'c':
-            
+            case 'R':
+            case 'r':
+                if(del(chosen, savfile_path)) {
+                    proj_n--;
+                    chosen = 0;
+                }
                 break;
             default:
                 break;
@@ -102,4 +106,9 @@ void show_projs(char *savfile_path) {
         redraw_projs(savfile, chosen);
     }
     attroff(COLORS);
+    fclose(savfile);
+    if (key == 10) { // launch
+        // pass if chosen_project.launch is empty
+        launch(chosen, savfile_path);
+    }
 }

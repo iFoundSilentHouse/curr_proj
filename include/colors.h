@@ -2,10 +2,10 @@
 #define COLORS_H
 #include <stdint.h>
 #include <ncurses.h>
+#include "layout_handlers.h"
+#include "color_macros.h"
 
-#define COLORS 8
-#define BASE_COLOR COLORS+1
 void init_colors();
-int8_t add_color_win();
+int8_t choose_color_win();
 
 #endif

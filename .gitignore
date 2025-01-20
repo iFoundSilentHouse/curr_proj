@@ -1,4 +1,5 @@
 .clangd
 curr_proj
 config_files/
+helpers/
 test/static_1menu

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -pedantic -Wformat=2 -Wformat-truncation -pipe -lncurses -I../include
+CFLAGS=-Wall -Wextra -pedantic -Wformat=2 -Wformat-truncation -pipe -lform -lncurses -I../include
 
 .PHONY: all
 

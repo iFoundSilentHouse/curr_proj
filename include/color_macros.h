@@ -1,0 +1,2 @@
+#define COLORS 8
+#define BASE_COLOR COLORS+1
